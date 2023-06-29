@@ -3,7 +3,7 @@
 
 # IDL header directory
 
-export IDL_IPATH="/Applications/exelis/idl85/external/include"
+export IDL_IPATH="/Applications/harris/idl88/external/include/"
 
 # RST DLM directory
 

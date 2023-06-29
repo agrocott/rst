@@ -11,11 +11,11 @@ export XPATH="/opt/X11"
 
 # Compile netCDF software
 
-export NETCDF_PATH="/usr/local/Cellar/netcdf/4.7.4_1.reinstall/"
+export NETCDF_PATH="/opt/homebrew/Cellar/netcdf/4.9.2_1"
 
 # pathname for the CDF software
 
-export CDF_PATH="/Applications/cdf/cdf"
+export CDF_PATH="/Applications/cdf/cdf39_0-dist"
 
 # SVG library
 

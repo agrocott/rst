@@ -1,0 +1,628 @@
+homebrew: don't use sudo
+ncurses: already installed. For compilers to find ncurses you may need to set:
+  export LDFLAGS="-L/opt/homebrew/opt/ncurses/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/ncurses/include"
+
+In makelib.darwin:
+/opt/includ needs to be updated to correct path:
+CFLAGS = -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/homebrew/include $(INCLUDE)  
+
+
+rm -f *.o
+make.version /Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xml.1.8/src/..
+make.hdr /Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xml.1.8/src/../include /Users/adrian/GitHub/rst/build/include/base
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xml.1.8/src/../include/rxml.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xml.1.8/src/../include/rxml.h -> /Users/adrian/GitHub/rst/build/include/base/rxml.h
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c rxml.c
+In file included from rxml.c:35:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+rxml.c:39:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake() {
+                       ^
+                        void
+rxml.c:211:48: warning: for loop has empty body [-Wempty-body]
+          for (i=j;(i<tsze) && (isspace(tbuf[i]));i++);
+                                                      ^
+rxml.c:211:48: note: put the semicolon on a separate line to silence this warning
+3 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c call.c
+In file included from call.c:27:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+1 warning generated.
+mkdir -p /Users/adrian/GitHub/rst/build/lib
+libtool -static -o /Users/adrian/GitHub/rst/build/lib/librxml.1.8.a rxml.o call.o
+gcc -Wl,-install_name,@rpath/librxml.1.8.dylib \
+            -dynamiclib -all_load -flat_namespace -undefined suppress \
+            -single_module -o  /Users/adrian/GitHub/rst/build/lib/librxml.1.8.dylib \
+                               /Users/adrian/GitHub/rst/build/lib/librxml.1.8.a \
+                               -L/Users/adrian/GitHub/rst/build/lib
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf librxml.1.8.a \
+               librxml."1".a
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf librxml.1.8.dylib \
+               librxml."1".dylib
+rm -f *.o
+make.version /Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldb.1.6/src/..
+make.hdr /Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldb.1.6/src/../include /Users/adrian/GitHub/rst/build/include/base
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldb.1.6/src/../include/rxmldb.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldb.1.6/src/../include/rxmldb.h -> /Users/adrian/GitHub/rst/build/include/base/rxmldb.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldb.1.6/src/../include/entity.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldb.1.6/src/../include/entity.h -> /Users/adrian/GitHub/rst/build/include/base/entity.h
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c rxmldb.c
+In file included from rxmldb.c:33:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from rxmldb.c:34:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+3 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c table.c
+In file included from table.c:33:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from table.c:34:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+table.c:38:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable() {
+                                 ^
+                                  void
+4 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c element.c
+In file included from element.c:29:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from element.c:30:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+3 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c entity.c
+In file included from entity.c:31:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from entity.c:32:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from entity.c:33:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+entity.c:37:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake() {
+                             ^
+                              void
+5 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c buffer.c
+In file included from buffer.c:28:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from buffer.c:29:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+3 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c tree.c
+In file included from tree.c:33:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from tree.c:34:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+tree.c:38:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree() {
+                               ^
+                                void
+4 warnings generated.
+mkdir -p /Users/adrian/GitHub/rst/build/lib
+libtool -static -o /Users/adrian/GitHub/rst/build/lib/librxmldb.1.6.a rxmldb.o table.o element.o entity.o buffer.o tree.o
+gcc -Wl,-install_name,@rpath/librxmldb.1.6.dylib \
+            -dynamiclib -all_load -flat_namespace -undefined suppress \
+            -single_module -o  /Users/adrian/GitHub/rst/build/lib/librxmldb.1.6.dylib \
+                               /Users/adrian/GitHub/rst/build/lib/librxmldb.1.6.a \
+                               -L/Users/adrian/GitHub/rst/build/lib
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf librxmldb.1.6.a \
+               librxmldb."1".a
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf librxmldb.1.6.dylib \
+               librxmldb."1".dylib
+rm -f *.o
+make.version /Users/adrian/GitHub/rst/codebase/base/src.lib/xml/tagdb.1.7/src/..
+make.hdr /Users/adrian/GitHub/rst/codebase/base/src.lib/xml/tagdb.1.7/src/../include /Users/adrian/GitHub/rst/build/include/base
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/tagdb.1.7/src/../include/tagdb.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/tagdb.1.7/src/../include/tagdb.h -> /Users/adrian/GitHub/rst/build/include/base/tagdb.h
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c tagdb.c
+In file included from tagdb.c:35:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from tagdb.c:36:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from tagdb.c:37:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+In file included from tagdb.c:38:
+/Users/adrian/GitHub/rst/build/include/base/tagdb.h:60:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable();
+                                 ^
+                                  void
+tagdb.c:40:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable() {
+                                 ^
+                                  void
+6 warnings generated.
+mkdir -p /Users/adrian/GitHub/rst/build/lib
+libtool -static -o /Users/adrian/GitHub/rst/build/lib/libtagdb.1.7.a tagdb.o
+gcc -Wl,-install_name,@rpath/libtagdb.1.7.dylib \
+            -dynamiclib -all_load -flat_namespace -undefined suppress \
+            -single_module -o  /Users/adrian/GitHub/rst/build/lib/libtagdb.1.7.dylib \
+                               /Users/adrian/GitHub/rst/build/lib/libtagdb.1.7.a \
+                               -L/Users/adrian/GitHub/rst/build/lib
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf libtagdb.1.7.a \
+               libtagdb."1".a
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf libtagdb.1.7.dylib \
+               libtagdb."1".dylib
+rm -f *.o
+make.version /Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldoclib.1.5/src/..
+make.hdr /Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldoclib.1.5/src/../include /Users/adrian/GitHub/rst/build/include/base
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldoclib.1.5/src/../include/rxmldoc.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/xml/xmldoclib.1.5/src/../include/rxmldoc.h -> /Users/adrian/GitHub/rst/build/include/base/rxmldoc.h
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c getstring.c
+In file included from getstring.c:30:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from getstring.c:31:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+3 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c build.c
+In file included from build.c:30:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from build.c:31:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from build.c:32:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+In file included from build.c:33:
+/Users/adrian/GitHub/rst/build/include/base/tagdb.h:60:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable();
+                                 ^
+                                  void
+In file included from build.c:35:
+/Users/adrian/GitHub/rst/build/include/base/rxmldoc.h:85:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdocdata *XMLdocMake();
+                             ^
+                              void
+6 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c make.c
+In file included from make.c:30:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from make.c:31:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from make.c:32:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+In file included from make.c:33:
+/Users/adrian/GitHub/rst/build/include/base/tagdb.h:60:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable();
+                                 ^
+                                  void
+In file included from make.c:34:
+/Users/adrian/GitHub/rst/build/include/base/rxmldoc.h:85:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdocdata *XMLdocMake();
+                             ^
+                              void
+make.c:38:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdocdata *XMLdocMake() {
+                             ^
+                              void
+7 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c render.c
+In file included from render.c:30:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from render.c:31:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from render.c:32:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+In file included from render.c:33:
+/Users/adrian/GitHub/rst/build/include/base/tagdb.h:60:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable();
+                                 ^
+                                  void
+In file included from render.c:36:
+/Users/adrian/GitHub/rst/build/include/base/rxmldoc.h:85:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdocdata *XMLdocMake();
+                             ^
+                              void
+6 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c set.c
+In file included from set.c:30:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from set.c:31:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from set.c:32:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+In file included from set.c:33:
+/Users/adrian/GitHub/rst/build/include/base/tagdb.h:60:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable();
+                                 ^
+                                  void
+In file included from set.c:36:
+/Users/adrian/GitHub/rst/build/include/base/rxmldoc.h:85:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdocdata *XMLdocMake();
+                             ^
+                              void
+6 warnings generated.
+mkdir -p /Users/adrian/GitHub/rst/build/lib
+libtool -static -o /Users/adrian/GitHub/rst/build/lib/librxmldoc.1.5.a getstring.o build.o make.o render.o set.o
+gcc -Wl,-install_name,@rpath/librxmldoc.1.5.dylib \
+            -dynamiclib -all_load -flat_namespace -undefined suppress \
+            -single_module -o  /Users/adrian/GitHub/rst/build/lib/librxmldoc.1.5.dylib \
+                               /Users/adrian/GitHub/rst/build/lib/librxmldoc.1.5.a \
+                               -L/Users/adrian/GitHub/rst/build/lib
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf librxmldoc.1.5.a \
+               librxmldoc."1".a
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf librxmldoc.1.5.dylib \
+               librxmldoc."1".dylib
+rm -f *.o
+make.version /Users/adrian/GitHub/rst/codebase/base/src.lib/task/option.1.7/src/..
+make.hdr /Users/adrian/GitHub/rst/codebase/base/src.lib/task/option.1.7/src/../include /Users/adrian/GitHub/rst/build/include/base
+/Users/adrian/GitHub/rst/codebase/base/src.lib/task/option.1.7/src/../include/option.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/task/option.1.7/src/../include/option.h -> /Users/adrian/GitHub/rst/build/include/base/option.h
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c option.c
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c printinfo.c
+mkdir -p /Users/adrian/GitHub/rst/build/lib
+libtool -static -o /Users/adrian/GitHub/rst/build/lib/libopt.1.7.a option.o printinfo.o
+gcc -Wl,-install_name,@rpath/libopt.1.7.dylib \
+            -dynamiclib -all_load -flat_namespace -undefined suppress \
+            -single_module -o  /Users/adrian/GitHub/rst/build/lib/libopt.1.7.dylib \
+                               /Users/adrian/GitHub/rst/build/lib/libopt.1.7.a \
+                               -L/Users/adrian/GitHub/rst/build/lib
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf libopt.1.7.a \
+               libopt."1".a
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf libopt.1.7.dylib \
+               libopt."1".dylib
+rm -f *.o
+make.version /Users/adrian/GitHub/rst/codebase/base/src.lib/httpd/rscript.1.6/src/..
+make.hdr /Users/adrian/GitHub/rst/codebase/base/src.lib/httpd/rscript.1.6/src/../include /Users/adrian/GitHub/rst/build/include/base
+/Users/adrian/GitHub/rst/codebase/base/src.lib/httpd/rscript.1.6/src/../include/rscript.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/httpd/rscript.1.6/src/../include/rscript.h -> /Users/adrian/GitHub/rst/build/include/base/rscript.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/httpd/rscript.1.6/src/../include/rscriptHTML.h
+/Users/adrian/GitHub/rst/codebase/base/src.lib/httpd/rscript.1.6/src/../include/rscriptHTML.h -> /Users/adrian/GitHub/rst/build/include/base/rscriptHTML.h
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c rscript.c
+In file included from rscript.c:29:
+/Users/adrian/GitHub/rst/build/include/base/rscript.h:47:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct ScriptData *ScriptMake();
+                             ^
+                              void
+rscript.c:33:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct ScriptData *ScriptMake() {
+                             ^
+                              void
+2 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/build/include/base   -c rscriptHTML.c
+In file included from rscriptHTML.c:30:
+/Users/adrian/GitHub/rst/build/include/base/rscript.h:47:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct ScriptData *ScriptMake();
+                             ^
+                              void
+1 warning generated.
+mkdir -p /Users/adrian/GitHub/rst/build/lib
+libtool -static -o /Users/adrian/GitHub/rst/build/lib/librscript.1.6.a rscript.o rscriptHTML.o
+gcc -Wl,-install_name,@rpath/librscript.1.6.dylib \
+            -dynamiclib -all_load -flat_namespace -undefined suppress \
+            -single_module -o  /Users/adrian/GitHub/rst/build/lib/librscript.1.6.dylib \
+                               /Users/adrian/GitHub/rst/build/lib/librscript.1.6.a \
+                               -L/Users/adrian/GitHub/rst/build/lib
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf librscript.1.6.a \
+               librscript."1".a
+cd /Users/adrian/GitHub/rst/build/lib; ln -sf librscript.1.6.dylib \
+               librscript."1".dylib
+rm -f *.o
+rm -f version.h
+rm -f errstr.h
+rm -f hlpstr.h
+rm -f xmldoc
+make.version /Users/adrian/GitHub/rst/codebase/base/src.bin/xmldoc/xmldoc.1.6
+make.help
+./doc/xmldoc.doc.xml
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/X11/include -D_SVGLIB_ -I/Users/adrian/GitHub/rst/build/include/base -c loadconfig.c
+In file included from loadconfig.c:34:
+/Users/adrian/GitHub/rst/build/include/base/rscript.h:47:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct ScriptData *ScriptMake();
+                             ^
+                              void
+In file included from loadconfig.c:35:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from loadconfig.c:36:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from loadconfig.c:37:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+In file included from loadconfig.c:38:
+/Users/adrian/GitHub/rst/build/include/base/tagdb.h:60:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable();
+                                 ^
+                                  void
+In file included from loadconfig.c:40:
+/Users/adrian/GitHub/rst/build/include/base/rxmldoc.h:85:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdocdata *XMLdocMake();
+                             ^
+                              void
+7 warnings generated.
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/X11/include -D_SVGLIB_ -I/Users/adrian/GitHub/rst/build/include/base -c xmldoc.c
+In file included from xmldoc.c:36:
+/Users/adrian/GitHub/rst/build/include/base/rscript.h:47:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct ScriptData *ScriptMake();
+                             ^
+                              void
+In file included from xmldoc.c:38:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from xmldoc.c:39:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from xmldoc.c:40:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+In file included from xmldoc.c:41:
+/Users/adrian/GitHub/rst/build/include/base/tagdb.h:60:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable();
+                                 ^
+                                  void
+In file included from xmldoc.c:43:
+/Users/adrian/GitHub/rst/build/include/base/rxmldoc.h:85:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdocdata *XMLdocMake();
+                             ^
+                              void
+7 warnings generated.
+mkdir -p /Users/adrian/GitHub/rst/build/bin
+cc -Wl,-rpath,@loader_path/../lib/ -Wl,-rpath,@loader_path/../../lib/ -L/opt/X11/lib -L/Users/adrian/GitHub/rst/build/lib -o /Users/adrian/GitHub/rst/build/bin/xmldoc loadconfig.o xmldoc.o  -lrscript.1 -lrxmldoc.1 -ltagdb.1 -lrxmldb.1 -lrxml.1 -lopt.1   \
+                            -lm
+rm -f *.o
+rm -f version.h
+rm -f errstr.h
+rm -f hlpstr.h
+rm -f scdoc
+make.version /Users/adrian/GitHub/rst/codebase/base/src.bin/xmldoc/scdoc.1.4
+make.help
+./doc/scdoc.doc.xml
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/X11/include -D_SVGLIB_ -I/Users/adrian/GitHub/rst/build/include/base -c scdoc.c
+In file included from scdoc.c:31:
+/Users/adrian/GitHub/rst/build/include/base/rxml.h:70:24: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdata *XMLMake();
+                       ^
+                        void
+In file included from scdoc.c:32:
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:82:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtable *XMLDBMakeTable();
+                                 ^
+                                  void
+/Users/adrian/GitHub/rst/build/include/base/rxmldb.h:115:32: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLDBtree *XMLDBMakeTree();
+                               ^
+                                void
+In file included from scdoc.c:33:
+/Users/adrian/GitHub/rst/build/include/base/rscript.h:47:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct ScriptData *ScriptMake();
+                             ^
+                              void
+In file included from scdoc.c:35:
+/Users/adrian/GitHub/rst/build/include/base/entity.h:63:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct Entitydata *EntityMake();
+                             ^
+                              void
+In file included from scdoc.c:36:
+/Users/adrian/GitHub/rst/build/include/base/tagdb.h:60:34: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct TagDBtable *TagDBMakeTable();
+                                 ^
+                                  void
+In file included from scdoc.c:37:
+/Users/adrian/GitHub/rst/build/include/base/rxmldoc.h:85:30: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+struct XMLdocdata *XMLdocMake();
+                             ^
+                              void
+7 warnings generated.
+mkdir -p /Users/adrian/GitHub/rst/build/bin
+cc -Wl,-rpath,@loader_path/../lib/ -Wl,-rpath,@loader_path/../../lib/ -L/opt/X11/lib -L/Users/adrian/GitHub/rst/build/lib -o /Users/adrian/GitHub/rst/build/bin/scdoc scdoc.o  -lrscript.1 -lrxmldoc.1 -ltagdb.1 -lrxmldb.1 -lrxml.1 -lopt.1   \
+                            -lm
+rm -f *.o
+rm -f version.h
+rm -f errstr.h
+rm -f hlpstr.h
+rm -f addtext
+make.version /Users/adrian/GitHub/rst/codebase/base/src.bin/build/addtext.1.7
+make.help
+./doc/addtext.doc.xml
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/X11/include -D_SVGLIB_  -c addtext.c
+mkdir -p /Users/adrian/GitHub/rst/build/bin
+cc -Wl,-rpath,@loader_path/../lib/ -Wl,-rpath,@loader_path/../../lib/ -L/opt/X11/lib -L/Users/adrian/GitHub/rst/build/lib -o /Users/adrian/GitHub/rst/build/bin/addtext addtext.o     \
+
+rm -f *.o
+rm -f version.h
+rm -f errstr.h
+rm -f hlpstr.h
+rm -f maketree
+make.version /Users/adrian/GitHub/rst/codebase/base/src.bin/build/maketree.1.2
+make.help
+./doc/maketree.doc.xml
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/X11/include -D_SVGLIB_  -c maketree.c
+mkdir -p /Users/adrian/GitHub/rst/build/bin
+cc -Wl,-rpath,@loader_path/../lib/ -Wl,-rpath,@loader_path/../../lib/ -L/opt/X11/lib -L/Users/adrian/GitHub/rst/build/lib -o /Users/adrian/GitHub/rst/build/bin/maketree maketree.o   \
+                            -lm
+rm -f *.o
+rm -f version.h
+rm -f errstr.h
+rm -f hlpstr.h
+rm -f makeall
+make.version /Users/adrian/GitHub/rst/codebase/base/src.bin/build/makeall.1.22
+make.help
+./doc/makeall.doc.xml
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/X11/include -D_SVGLIB_  -c makeall.c
+mkdir -p /Users/adrian/GitHub/rst/build/bin
+cc -Wl,-rpath,@loader_path/../lib/ -Wl,-rpath,@loader_path/../../lib/ -L/opt/X11/lib -L/Users/adrian/GitHub/rst/build/lib -o /Users/adrian/GitHub/rst/build/bin/makeall makeall.o   \
+                            -lm
+
+
+
+
+
+
+
+
+
+
+
+cc -Wall -pedantic -O3 -D_GNU_SOURCE -D_DARWIN -I/opt/local/include -I/Users/adrian/GitHub/rst/include/base   -c png.c
+png.c:32:10: fatal error: 'png.h' file not found
+#include <png.h>
+         ^~~~~~~
+1 error generated.
+make: *** [png.o] Error 1
+Compilation Aborted.
+
+
+
+
+

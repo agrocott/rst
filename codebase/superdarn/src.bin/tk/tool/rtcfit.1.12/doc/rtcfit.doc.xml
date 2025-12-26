@@ -14,6 +14,8 @@
 </option>
 <option><on>-vb</on><od>verbose. Log information to the console.</od>
 </option>
+<option><on>-name <ar>stid</ar></on><od>specify the radar code <ar>stid</ar> to use for the output filename (the default value is taken from the radar parameter block but can sometimes become corrupted and set to tst).</od>
+</option>
 <option><on>-mp <ar>minpwr</ar></on><od>filter out data with values of lag-zero power less than <ar>minpwr</ar>.</od>
 </option>
 <option><on>-L <ar>logname</ar></on><od>log connections and information in the file <ar>logname</ar>. By default, connections are recorded in <code>log.rt</code>.</od>
@@ -36,12 +38,12 @@
 </description>
 
 <example>
-<command>make_cfit -L log -if pid.id kapqnx.jhuapl.edu 1024</command>
+<command>rtcfit -L log -if pid.id kapqnx.jhuapl.edu 1024</command>
 <description>Generates <code>cfit</code> files from the host "<code>kapqnx.jhuapl.edu</code>", served at port 1024. The process identifier is recorded in the file "<code>pid.id</code>", and logs of all transactions are recorded in the file "<code>log.<em>yyyymmdd</em></code>" where <em>yyyy</em> is the year, <em>mm</em> is the month, and <em>dd</em> is the day.</description>
 </example>
 
 <example>
-<command>make_cfit -L log -if pid.id -rpf port.kap kapqnx.jhuapl.edu</command>
+<command>rtcfit -L log -if pid.id -rpf port.kap kapqnx.jhuapl.edu</command>
 <description>Generates <code>cfit</code> files from the host "<code>kapqnx.jhuapl.edu</code>", served at port contained in the file "<code>port.kap</code>". The process identifier is recorded in the file "<code>pid.id</code>", and logs of all transactions are recorded in the file "<code>log.<em>yyyymmdd</em></code>" where <em>yyyy</em> is the year, <em>mm</em> is the month, and <em>dd</em> is the day.</description>
 </example>
 

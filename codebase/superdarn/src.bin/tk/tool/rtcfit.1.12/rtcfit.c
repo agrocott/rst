@@ -110,11 +110,11 @@ int main(int argc,char *argv[]) {
   unsigned char vb=0;
  
   char *logstr=NULL;
-  char *fnamestr=NULL;
   char *pathstr=NULL;
   char *pidstr=NULL;
 
   char *envstr;
+  char *stcode=NULL;
 
   int sock;
 
@@ -190,12 +190,13 @@ int main(int argc,char *argv[]) {
 
   OptionAdd(&opt,"vb",'x',&vb);
 
+  OptionAdd(&opt,"name",'t',&stcode);
+
   OptionAdd(&opt,"mp",'d',&minpwr);
 
   OptionAdd(&opt,"rpf",'x',&port_flag);
   
   OptionAdd(&opt,"L",'t',&logstr);
-  OptionAdd(&opt,"f",'t',&fnamestr);
   OptionAdd(&opt,"p",'t',&pathstr);
   OptionAdd(&opt,"if",'t',&pidstr);
 
@@ -313,8 +314,9 @@ int main(int argc,char *argv[]) {
          if (dstart==0) {
            dstart=now-(int) now % (24*3600); /* start of day */
            TimeEpochToYMDHMS(dstart,&yr,&mo,&dy,&hr,&mt,&sc);
+           if (stcode==NULL) stcode=RadarGetCode(network,cfit->stid,0);
            sprintf(dname,"%s/%.4d%.2d%.2d.%s.cfit",
-		       path,yr,mo,dy,RadarGetCode(network,cfit->stid,0));
+		           path,yr,mo,dy,stcode);
 	 }
 
 
@@ -325,9 +327,9 @@ int main(int argc,char *argv[]) {
          if ((now-dstart) >= 24*3600) { /* advance to the next day */
            dstart=now-(int) now % (24*3600); /* start of day */
            TimeEpochToYMDHMS(dstart,&yr,&mo,&dy,&hr,&mt,&sc);
+           if (stcode==NULL) stcode=RadarGetCode(network,cfit->stid,0);
            sprintf(dname,"%s/%.4d%.2d%.2d.%s.cfit",
-		       path,yr,mo,dy,
-                       RadarGetCode(network,cfit->stid,0));
+		           path,yr,mo,dy,stcode);
 	 }
 	 
          cnt++;

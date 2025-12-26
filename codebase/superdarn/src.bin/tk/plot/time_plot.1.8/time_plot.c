@@ -278,6 +278,7 @@ int main(int argc,char *argv[]) {
 
   double otime=-1;
   double atime=-1;
+  double tatime=-1;
 
   double stime=-1;
   double etime=-1;
@@ -407,6 +408,9 @@ int main(int argc,char *argv[]) {
   int hgt=HEIGHT;
   unsigned int bgcolor=0;
 
+  char *pbgtxt=NULL;
+  unsigned int pbgcolor=0;
+
   float width=0.5;
   char *fontname=NULL;
   char *tfontname=NULL;
@@ -523,6 +527,7 @@ int main(int argc,char *argv[]) {
   OptionAdd(&opt,"wdt",'i',&wdt); /* width */
   OptionAdd(&opt,"hgt",'i',&hgt); /* height */
   OptionAdd(&opt,"bgcol",'t',&bgtxt); /* background color */
+  OptionAdd(&opt,"pbgcol",'t',&pbgtxt); /* panel background color */
 
   OptionAdd(&opt,"grdcol",'t',&grdtxt); /* grid color */
   OptionAdd(&opt,"txtcol",'t',&txttxt); /* text color */
@@ -711,16 +716,19 @@ int main(int argc,char *argv[]) {
   }
 
   bgcolor=PlotColor(0xff,0xff,0xff,0xff);
-  if (bgtxt !=NULL) sscanf(bgtxt,"%x",&bgcolor);
+  if (bgtxt !=NULL) bgcolor=PlotColorStringRGB(bgtxt);
+
+  pbgcolor=PlotColor(0xff,0xff,0xff,0xff);
+  if (pbgtxt !=NULL) pbgcolor=PlotColorStringRGB(pbgtxt);
 
   gscolor=PlotColor(0xa0,0xa0,0xa0,0xff);
-  if (gsctxt !=NULL) sscanf(gsctxt,"%x",&gscolor);
+  if (gsctxt !=NULL) gscolor=PlotColorStringRGB(gsctxt);
 
   grdcolor=PlotColor(0x00,0x00,0x00,0xff);
-  if (grdtxt !=NULL) sscanf(grdtxt,"%x",&grdcolor);
+  if (grdtxt !=NULL) grdcolor=PlotColorStringRGB(grdtxt);
 
   txtcolor=PlotColor(0x00,0x00,0x00,0xff);
-  if (txttxt !=NULL)  sscanf(txttxt,"%x",&txtcolor);
+  if (txttxt !=NULL) txtcolor=PlotColorStringRGB(txttxt);
 
   if (pkey_fname !=NULL) {
     if (pkey_path == NULL) pkey_path = getenv("COLOR_TABLE_PATH");
@@ -1334,6 +1342,13 @@ int main(int argc,char *argv[]) {
 
   for (n=0;n<8;n++) if (blk[n] !=NULL) FrameBufferClear(blk[n],0x0f,bgcolor);
 
+  for (i=0;i<cnt;i++) {
+    PlotRectangle(plot,NULL,
+                  plt->xoff+(i % plt->xnum)*(plt->box_wdt+plt->lpad+plt->rpad),
+                  plt->yoff+(i / plt->xnum)*(plt->box_hgt+plt->tpad+plt->bpad),
+                  plt->box_wdt,plt->box_hgt,1,pbgcolor,0x0f,0,NULL);
+  }
+
   do {
 
     otime=atime;
@@ -1369,10 +1384,11 @@ int main(int argc,char *argv[]) {
 
     /* SND-format data collected at the end of a scan typically has
      * an integration time of only ~1.5 to 2.0 seconds */
-    if ((sndflg) && (atime-otime)>4) otime=atime-2;
+    if ((sndflg) && (atime-otime)>4) tatime=otime+tplot.intt.sc+tplot.intt.us/1e6;
+    else tatime=atime;
 
     lft=bwdt*(otime-stime)/(etime-stime);
-    rgt=bwdt*(atime-stime)/(etime-stime);
+    rgt=bwdt*(tatime-stime)/(etime-stime);
     if (rgt==lft) rgt++;
     if (lft<0) lft=0;
     if (lft>=bwdt) lft=bwdt-1;
@@ -1412,18 +1428,18 @@ int main(int argc,char *argv[]) {
         }
 
         if ((geoflg) || (magflg)) {
-          double rho,blat,tlat,lon;
+          double rho,blat,tlat,lon,srng;
           double tmp_swap;
           if (magflg) RPosMag(0,tplot.bmnum,rng-1,site,tplot.frang,
                               tplot.rsep,tplot.rxrise,300,&rho,
-                              &blat,&lon,chisham,old_aacgm);
+                              &blat,&lon,&srng,chisham,old_aacgm);
           else RPosGeo(0,tplot.bmnum,rng-1,site,tplot.frang,tplot.rsep,
-                       tplot.rxrise,300,&rho,&blat,&lon,chisham);
+                       tplot.rxrise,300,&rho,&blat,&lon,&srng,chisham);
 
           if (magflg) RPosMag(0,tplot.bmnum,rng,site,tplot.frang,tplot.rsep,
-                              tplot.rxrise,300,&rho,&tlat,&lon,chisham,old_aacgm);
+                              tplot.rxrise,300,&rho,&tlat,&lon,&srng,chisham,old_aacgm);
           else RPosGeo(0,tplot.bmnum,rng,site,tplot.frang,tplot.rsep,
-                       tplot.rxrise,300,&rho,&tlat,&lon,chisham);
+                       tplot.rxrise,300,&rho,&tlat,&lon,&srng,chisham);
 
           if (tlat<blat) {
             tmp_swap=blat;
